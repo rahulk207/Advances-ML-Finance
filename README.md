@@ -1,0 +1,8 @@
+The code is inspired by Marco's Advances in Financial Machine Learning book. Contains some implementation and experimentaion of its methods on binance crypto data. Mind that the code was created for quick experimentation and self-use and is not optimized for public usage.
+Trades data is collected using binance historic data API. Code is present in binanceHistoricData.py. Data is written on drive.
+Inspired by the book, the individual trades are converted to dollar bars - each bar representing the subsequent minimal number of trades amounting to 'x' dollars. 'x' being constant. Code - createDollarBars.py. The bars can also be visualized as candlesticks using the code present in visualiseBars.py.
+Next the bars are labeled using the Triple-Barrier methodology described in the book. Code - labelBars.py. For each dollar bar, we have two labels - Side and Size.
+The model training code using the labeled data can be found in files trainSideModel.py and trainSizeModel.py. We train two different Random Forest classifiers for predicting the Side and Size of the bet.
+We backtest the trained models using the Purged K-Folds Cross Validation technique to prevent overfitting and information overlap between train and test sets. Code is present in backtesting.py. It simulates live data and opens/closes positions as predicted by the trained model. Finally we compute the Sharpe Ration of the strategy.
+We also try a bar sampling approach using a CUSUM filter. This is to better the quality of positives present in the dataset. The code for this technique is in sampleBars.py and it's backtesting is done using backtestFilter.py.
+The position open and close times/indices are analyzed and visualized using analysis.py.
