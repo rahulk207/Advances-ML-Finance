@@ -1,5 +1,6 @@
 The code is inspired by Marcos' **Advances in Financial Machine Learning** book. Contains some implementation and experimentaion of its methods on binance crypto data (Ethereum). Mind that the code was created for quick experimentation and self-use and is not optimized for public usage.<br/>
-1. Trades data is collected using binance historic data API. Code is present in `binanceHistoricData.py`. Data is written on drive.<br/>
+
+1. Individual trades level data is collected using binance fetch trades API. Code is present in `binanceHistoricData.py`. Data is written on drive.<br/>
 2. Inspired by the book, the individual trades are converted to dollar bars - each bar representing the subsequent minimal number of trades amounting to 'x' dollars. 'x' being constant. Code - `createDollarBars.py`. The bars can also be visualized as candlesticks using the code present in `visualiseBars.py`.<br/>
 3. Next the bars are labeled using the Triple-Barrier methodology described in the book. Code - `labelBars.py`. For each dollar bar, we have two labels - Side and Size.<br/>
 4. The model training code using the labeled data can be found in files `trainSideModel.py` and `trainSizeModel.py`. We train two different Random Forest classifiers for predicting the Side and Size of the bet.<br/>
